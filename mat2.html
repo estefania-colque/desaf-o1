@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calidad del Aire - AQI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calidad del Aire (AQI)</h1>
+        <input type="number" id="aqi" placeholder="Ingrese el valor AQI" min="0" max="500">
+        <button onclick="calcularCalidad()">Verificar Calidad</button>
+        <div id="resultado" class="result"></div>
+    </div>
+
+    <script>
+        function calcularCalidad() {
+            const aqi = parseInt(document.getElementById("aqi").value);
+            const resultado = document.getElementById("resultado");
+            
+            if (!aqi || aqi < 0 || aqi > 500) {
+                resultado.textContent = "Ingrese un valor AQI válido (0-500)";
+                resultado.style.background = "#f8d7da";
+                resultado.style.color = "#721c24";
+                return;
+            }
+            
+            let mensaje = "";
+            let color = "";
+            
+            if (aqi <= 50) {
+                mensaje = "Calidad del aire: Buena";
+                color = "#d4edda";
+            } else if (aqi <= 100) {
+                mensaje = "Calidad del aire: Moderada";
+                color = "#fff3cd";
+            } else if (aqi <= 150) {
+                mensaje = "Calidad del aire: Dañina para grupos sensibles";
+                color = "#ffeaa7";
+            } else if (aqi <= 200) {
+                mensaje = "Calidad del aire: Dañina";
+                color = "#f8d7da";
+            } else if (aqi <= 300) {
+                mensaje = "Calidad del aire: Muy dañina";
+                color = "#e8c6d0";
+            } else {
+                mensaje = "Calidad del aire: Peligrosa";
+                color = "#d6c2c6";
+            }
+            
+            resultado.textContent = mensaje;
+            resultado.style.background = color;
+            resultado.style.color = "#000";
+        }
+    </script>
+</body>
+</html>

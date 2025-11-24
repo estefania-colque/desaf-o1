@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clasificación de Magnitud Estelar</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f9;
+        color: #333;
+      }
+      .container {
+        background: #fff;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      h1 {
+        color: #007bff;
+        text-align: center;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
+      }
+      button {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+      #resultado {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #e9ecef;
+        text-align: center;
+        font-weight: bold;
+        min-height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Clasificación Estelar</h1>
+      <p>Ingresa la magnitud aparente para conocer su visibilidad.</p>
+
+      <label for="magnitudInput">Magnitud Aparente (m):</label>
+      <input type="number" id="magnitudInput" step="0.01" value="0" required />
+
+      <button onclick="clasificarMagnitud()">Clasificar</button>
+
+      <div id="resultado">Esperando valor...</div>
+    </div>
+
+    <script>
+      /**
+       * Función para clasificar la estrella según su magnitud aparente.
+       */
+      function clasificarMagnitud() {
+        // 1. Obtener el valor de la magnitud del campo de entrada (input)
+        const magnitudString = document.getElementById("magnitudInput").value;
+        const mag = parseFloat(magnitudString);
+
+        // 2. Variable para almacenar el resultado de la clasificación
+        let mensaje;
+
+        // 3. Lógica de clasificación basada en el código original
+        if (isNaN(mag)) {
+          mensaje = "Por favor, ingresa un número válido.";
+        } else if (mag < 0) {
+          mensaje = "Extremadamente brillante";
+        } else if (mag < 2) {
+          mensaje = "Muy brillante";
+        } else if (mag < 4) {
+          mensaje = "Brillante";
+        } else if (mag < 6) {
+          mensaje = "Débil";
+        } else {
+          mensaje = "No visible a simple vista";
+        }
+
+        // 4. Mostrar el resultado en el elemento con id="resultado"
+        document.getElementById("resultado").textContent = mensaje;
+      }
+    </script>
+  </body>
+</html>
